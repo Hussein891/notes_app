@@ -12,7 +12,7 @@ class NotesVeiwBady extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 50),
-          CustomAppBar(),
+          CustomAppBar(title: 'Notes', icon: Icons.search),
           Expanded(child: NotesListView())
         ],
       ),
