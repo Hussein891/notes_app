@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/addcubit/add_notes_cubit.dart';
 import 'package:notes_app/model/notes_model.dart';
 import 'package:notes_app/views/widgets/custom_bottom.dart';
@@ -52,10 +55,13 @@ class _AddNoteFormState extends State<AddNoteForm> {
               onTap: () {
                 if (fromKey.currentState!.validate()) {
                   fromKey.currentState!.save();
+                  var currentDate = DateTime.now();
+                  var formattedCurrentDate =
+                      DateFormat.yMEd().format(currentDate);
                   var notModle = NotesModel(
                       title: title!,
                       subtitle: subTitle!,
-                      date: DateTime.now().toString(),
+                      date: formattedCurrentDate,
                       color: Colors.blue.value);
                   BlocProvider.of<AddNotesCubit>(context).addNote(notModle);
                 } else {

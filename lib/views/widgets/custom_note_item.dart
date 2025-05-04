@@ -34,7 +34,9 @@ class NoteItem extends StatelessWidget {
                         color: Colors.black.withValues(alpha: 0.4))),
               ),
               trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    note.delete();
+                  },
                   icon: Icon(
                     FontAwesomeIcons.trash,
                     color: Colors.black,
