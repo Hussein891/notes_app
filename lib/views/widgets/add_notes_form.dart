@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/cubit/add_notes_cubit.dart';
 import 'package:notes_app/model/notes_model.dart';
-import 'package:notes_app/views/notes_view.dart';
 import 'package:notes_app/views/widgets/custom_bottom.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
 
@@ -46,17 +45,23 @@ class _AddNoteFormState extends State<AddNoteForm> {
         SizedBox(
           height: 80,
         ),
-        CustomBottom(
-          onTap: () {
-            if (fromKey.currentState!.validate()) {
-              fromKey.currentState!.save();
-              var notModle = NotesModel(subTitle!, Colors.blue.value,
-                  title: title!, date: DateTime.now().toString());
-              BlocProvider.of<AddNotesCubit>(context).addNote(notModle);
-            } else {
-              autovalidateMode = AutovalidateMode.always;
-              setState(() {});
-            }
+        BlocBuilder<AddNotesCubit, AddNotesState>(
+          builder: (context, state) {
+            return CustomBottom(
+              isLoading: state is AddNotesLoading ? true : false,
+              onTap: () {
+                if (fromKey.currentState!.validate()) {
+                  fromKey.currentState!.save();
+                  // ignore: deprecated_member_use
+                  var notModle = NotesModel(subTitle!, Colors.blue.value,
+                      title: title!, date: DateTime.now().toString());
+                  BlocProvider.of<AddNotesCubit>(context).addNote(notModle);
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
+            );
           },
         ),
         SizedBox(

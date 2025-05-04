@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/const.dart';
 
 class CustomBottom extends StatelessWidget {
-  const CustomBottom({super.key, this.onTap});
+  const CustomBottom({super.key, this.onTap, this.isLoading = false});
   final void Function()? onTap;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -14,10 +15,12 @@ class CustomBottom extends StatelessWidget {
         decoration: BoxDecoration(
             color: kPreimColor, borderRadius: BorderRadius.circular(8)),
         child: Center(
-          child: Text(
-            'Add',
-            style: TextStyle(color: Colors.black, fontSize: 20),
-          ),
+          child: isLoading
+              ? CircularProgressIndicator()
+              : Text(
+                  'Add',
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
         ),
       ),
     );
