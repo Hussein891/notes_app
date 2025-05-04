@@ -11,11 +11,11 @@ class NotesModel extends HiveObject {
   String subtitle;
 
   @HiveField(2)
-  String content;
+  String date;
 
   @HiveField(3)
   int color;
 
   NotesModel(this.subtitle, this.color,
-      {required this.title, required this.content});
+      {required this.title, required this.date});
 }
