@@ -52,9 +52,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
               onTap: () {
                 if (fromKey.currentState!.validate()) {
                   fromKey.currentState!.save();
-                  // ignore: deprecated_member_use
-                  var notModle = NotesModel(subTitle!, Colors.blue.value,
-                      title: title!, date: DateTime.now().toString());
+                  var notModle = NotesModel(
+                      title: title!,
+                      subtitle: subTitle!,
+                      date: DateTime.now().toString(),
+                      color: Colors.blue.value);
                   BlocProvider.of<AddNotesCubit>(context).addNote(notModle);
                 } else {
                   autovalidateMode = AutovalidateMode.always;
