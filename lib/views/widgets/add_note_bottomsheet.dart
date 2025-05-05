@@ -23,6 +23,7 @@ class AddNoteBottomsheet extends StatelessWidget {
           if (state is AddNotesSuccess) {
             print('ssss=========================');
             BlocProvider.of<NotescubitsCubit>(context).fatchAllNotes();
+            print('تمت إضافة ملاحظة جديدة وتحديث القائمة');
             return Navigator.pop(context);
           }
         },

@@ -17,13 +17,15 @@ class NotescubitsCubit extends Cubit<NotescubitsState> {
     try {
       final notesBox = Hive.box<NotesModel>(kNotesBox);
       final notes = notesBox.values.toList();
-      emit(NotescubitsSuccess(notes));
+      print('عدد الملاحظات الفعلي في Hive: ${notes.length}');
+      if (notes.isEmpty) {
+        emit(NotescubitsEmpty());
+      } else {
+        emit(NotescubitsSuccess(notes));
+      }
     } catch (e) {
+      print('حدث خطأ في جلب البيانات: $e');
       emit(NotescubitsFailure(e.toString()));
-
-      // var notesBox = Hive.box<NotesModel>(kNotesBox);
-
-      // notes = notesBox.values.toList();
     }
   }
 }

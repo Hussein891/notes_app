@@ -13,6 +13,8 @@ final class NotescubitsSuccess extends NotescubitsState {
   NotescubitsSuccess(this.notes);
 }
 
+final class NotescubitsEmpty extends NotescubitsState {}
+
 final class NotescubitsFailure extends NotescubitsState {
   final String errMessage;
 
