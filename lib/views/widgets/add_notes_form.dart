@@ -47,9 +47,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
           },
         ),
         SizedBox(
-          height: 80,
+          height: 30,
         ),
         ColorsListView(),
+        SizedBox(
+          height: 30,
+        ),
         BlocBuilder<AddNotesCubit, AddNotesState>(
           builder: (context, state) {
             return CustomBottom(
