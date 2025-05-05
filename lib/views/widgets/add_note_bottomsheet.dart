@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/addcubit/add_notes_cubit.dart';
+import 'package:notes_app/cubits/cubit/notescubits_cubit.dart';
 import 'package:notes_app/views/widgets/add_notes_form.dart';
 
 class AddNoteBottomsheet extends StatelessWidget {
@@ -13,11 +16,13 @@ class AddNoteBottomsheet extends StatelessWidget {
       child: BlocConsumer<AddNotesCubit, AddNotesState>(
         listener: (context, state) {
           if (state is AddNotesFailur) {
+            // ignore: duplicate_ignore
             // ignore: avoid_print
             print('Failoed ${state.errMessage}');
           }
           if (state is AddNotesSuccess) {
             print('ssss=========================');
+            BlocProvider.of<NotescubitsCubit>(context).fatchAllNotes();
             return Navigator.pop(context);
           }
         },
